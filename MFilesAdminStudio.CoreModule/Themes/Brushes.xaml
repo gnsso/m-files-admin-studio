@@ -1,0 +1,77 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+    <!-- Based on M-Files Design Guidelines -->
+
+    <!-- Backgrounds, buttons -->
+    <Color x:Key="MainBlue">#318CCC</Color>
+
+    <!-- Metadata header -->
+    <Color x:Key="SecondaryBlue">#3AABED</Color>
+
+    <!-- Selected item -->
+    <Color x:Key="LightBlue">#CBE8F6</Color>
+
+    <!-- Hover -->
+    <Color x:Key="LightBlue2">#E5F3FF</Color>
+
+    <!-- Backgrounds, text color, inactive icon -->
+    <Color x:Key="MainWhite">#FFFFFF</Color>
+
+    <!-- Text color -->
+    <Color x:Key="MainBlack">#000000</Color>
+
+    <!-- Base text color -->
+    <Color x:Key="Gray1">#333333</Color>
+
+    <!-- Header text (inactive) -->
+    <Color x:Key="Gray2">#666666</Color>
+
+    <!-- Metadata card heading -->
+    <Color x:Key="Gray3">#676767</Color>
+
+    <!-- Metadata card italic sub-heading -->
+    <Color x:Key="Gray4">#808080</Color>
+
+    <!-- Metadata card left text -->
+    <Color x:Key="Gray5">#999999</Color>
+
+    <!-- Search button, Task pane menu item (upper) -->
+    <Color x:Key="Gray6">#B3B3B3</Color>
+
+    <!-- Pane header (active) -->
+    <Color x:Key="Gray7">#CCCCCC</Color>
+
+    <!-- Pane header (inactive) -->
+    <Color x:Key="Gray8">#E6E6E6</Color>
+
+    <!-- Dialog background -->
+    <Color x:Key="Gray9">#F2F2F2</Color>
+
+    <Color x:Key="CustomLightBlue">#6ebcff</Color>
+    <Color x:Key="CustomDarkBlue">#005f9b</Color>
+    <Color x:Key="RealCustomDarkBlue">#004e88</Color>
+
+    <!-- Primary Brushes -->
+    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource CustomLightBlue}" po:Freeze="True" />
+    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource MainBlack}"/>
+    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{StaticResource MainBlue}"/>
+    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource MainWhite}"/>
+    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource CustomDarkBlue}"/>
+    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource MainWhite}"/>
+
+    <!-- Secondary Brushes -->
+    <Color x:Key="SecondaryAccentColor">#C1666B</Color>
+    <SolidColorBrush x:Key="SecondaryAccentBrush" Color="{StaticResource SecondaryAccentColor}"/>
+    <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="{StaticResource Accent200Foreground}"/>
+    
+    <!-- Popup background color -->
+    <SolidColorBrush x:Key="OverlayBackground" Color="#FFFAFAFA" />
+    
+    <!-- Other colors -->
+    <SolidColorBrush x:Key="SoftBlack" Color="#4D4D4D" po:Freeze="True" />
+    <SolidColorBrush x:Key="CheckGreen" Color="#43A047" po:Freeze="True" />
+    <SolidColorBrush x:Key="WaitYellow" Color="#FDD835" po:Freeze="True" />
+    <SolidColorBrush x:Key="CloseRed" Color="#E53935" po:Freeze="True" />
+</ResourceDictionary>

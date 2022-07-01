@@ -1,0 +1,97 @@
+﻿<mde:MaterialWindow  
+        xmlns:mde="https://spiegelp.github.io/MaterialDesignExtensions/winfx/xaml"
+        x:Class="MFilesAdminStudio.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://prismlibrary.com/" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        xmlns:cp="clr-namespace:MFilesAdminStudio.CoreModule.Properties;assembly=MFilesAdminStudio.CoreModule"
+        Title="{Binding Title}"
+        TitleBarIcon="..\favicon.ico"
+        WindowState="Normal" 
+        ResizeMode="{Binding InitialResizeMode, Mode=OneTime}" 
+        Width="{Binding InitialWidth, Mode=OneTime}"
+        Height="{Binding InitialHeight, Mode=OneTime}" 
+        WindowStartupLocation="CenterScreen">
+    <mde:MaterialWindow.TitleTemplate>
+        <DataTemplate>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock 
+                    Grid.Column="0"
+                    Style="{StaticResource WindowTitleTextBlockStyle}" 
+                    Text="{Binding Path=Title, RelativeSource={RelativeSource AncestorType={x:Type mde:MaterialWindow}}}" 
+                    Margin="0" />
+                <StackPanel
+                    Grid.Column="1" 
+                    Visibility="{Binding Path=DataContext.AppBarButtonsVisibility, RelativeSource={RelativeSource AncestorType={x:Type mde:MaterialWindow}}}"
+                    Orientation="Horizontal" 
+                    VerticalAlignment="Stretch">
+                    <TextBlock 
+                        Grid.Column="0"
+                        Style="{StaticResource WindowTitleTextBlockStyle}" 
+                        Text="Connected to " 
+                        Margin="8 0 0 0" />
+                    <Button 
+                        Style="{StaticResource WindowButtonStyle}"
+                        Command="{Binding Path=DataContext.ChangeVaultCommand, RelativeSource={RelativeSource AncestorType={x:Type mde:MaterialWindow}}}">
+                        <TextBlock 
+                            Text="{Binding Path=DataContext.ConnectedVaultName, RelativeSource={RelativeSource AncestorType={x:Type mde:MaterialWindow}}}"
+                            Style="{StaticResource WindowTitleTextBlockStyle}"
+                            Margin="-4 0 -2 0" />
+                    </Button>
+                    <Border 
+                        Width="1" 
+                        VerticalAlignment="Stretch" 
+                        SnapsToDevicePixels="True" 
+                        Margin="4,4,4,4"
+                        Background="{Binding Path=BorderForegroundBrush, RelativeSource={RelativeSource AncestorType={x:Type mde:MaterialWindow}}}" />
+                </StackPanel>
+                <StackPanel 
+                    Grid.Column="2"
+                    Visibility="{Binding Path=DataContext.AppBarButtonsVisibility, RelativeSource={RelativeSource AncestorType={x:Type mde:MaterialWindow}}}"
+                    Orientation="Horizontal" 
+                    VerticalAlignment="Stretch">
+                    <Button 
+                        Style="{StaticResource WindowButtonStyle}" 
+                        ToolTip="Go to App Page"
+                        Click="GoToAppPage">
+                        <materialDesign:PackIcon 
+                            Style="{StaticResource WindowButtonIconStyle}" 
+                            Kind="Web" />
+                    </Button>
+                    <Button 
+                        Style="{StaticResource WindowButtonStyle}" 
+                        ToolTip="About"
+                        Command="{Binding Path=DataContext.OpenAboutCommand, RelativeSource={RelativeSource AncestorType={x:Type mde:MaterialWindow}}}">
+                        <materialDesign:PackIcon 
+                            Style="{StaticResource WindowButtonIconStyle}" 
+                            Kind="AboutCircle" />
+                    </Button>
+                    <Border 
+                        Width="1" 
+                        VerticalAlignment="Stretch" 
+                        SnapsToDevicePixels="True" 
+                        Margin="4,4,4,4"
+                        Background="{Binding Path=BorderForegroundBrush, RelativeSource={RelativeSource AncestorType={x:Type mde:MaterialWindow}}}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </mde:MaterialWindow.TitleTemplate>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ContentControl prism:RegionManager.RegionName="{x:Static cp:Resources.App_RegionHolderName}" />
+        <materialDesign:Snackbar
+            x:Name="MainSnackbar"
+            MessageQueue="{materialDesign:MessageQueue}"
+            Grid.Row="1"/>
+    </Grid>
+</mde:MaterialWindow>

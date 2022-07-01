@@ -1,0 +1,21 @@
+﻿<prism:PrismApplication x:Class="MFilesAdminStudio.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	     xmlns:prism="http://prismlibrary.com/"
+             xmlns:local="clr-namespace:MFilesAdminStudio" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MFilesAdminStudio.CoreModule;component/Themes/Brushes.xaml" />
+                <materialDesign:CustomColorTheme BaseTheme="Light" PrimaryColor="{StaticResource MainBlue}" SecondaryColor="{StaticResource SecondaryBlue}" ColorAdjustment="{materialDesign:ColorAdjustment}" />
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/Generic.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MFilesAdminStudio.CoreModule;component/Themes/SlimScrollBar.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MFilesAdminStudio.CoreModule;component/Themes/Styles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MFilesAdminStudio.CoreModule;component/Themes/DataTemplates.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MFilesAdminStudio.CoreModule;component/Themes/Images.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>

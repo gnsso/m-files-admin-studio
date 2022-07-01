@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="MFilesAdminStudio.CoreModule.Views.ListVaultsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:MFilesAdminStudio.CoreModule.Converters"
+             Width="360"
+             Height="500">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MFilesAdminStudio.CoreModule;component/Themes/DataTemplates.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/Generic.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/Generic.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MFilesAdminStudio.CoreModule;component/Themes/SlimScrollBar.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ContentControl
+            Grid.RowSpan="3"
+            Visibility="{Binding IsLoadingVaults, Converter={x:Static converters:BooleanVisibilityConverter.Instance}}"
+            ContentTemplate="{StaticResource loadingStackTemplate}" Content="Loading server vaults..." />
+
+        <Grid
+            Visibility="{Binding IsLoadingVaults, Converter={x:Static converters:BooleanVisibilityConverter.Instance}, ConverterParameter=reverse}" 
+            Margin="0 8 0 8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" BorderThickness="0 1.5 0 0" Margin="0 20 0 0" />
+            <TextBlock Grid.Column="2" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" FontWeight="SemiBold" Text="CHANGE VAULT" Foreground="{StaticResource PrimaryHueMidBrush}" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Margin="16 11 16 8" />
+            <Border Grid.Column="3" BorderBrush="{StaticResource PrimaryHueMidBrush}" BorderThickness="0 1.5 0 0" Margin="0 20 0 0" />
+        </Grid>
+
+        <!-- vaults list view -->
+        <ScrollViewer 
+            Grid.Row="1"
+            Visibility="{Binding IsLoadingVaults, Converter={x:Static converters:BooleanVisibilityConverter.Instance}, ConverterParameter=reverse}"
+            HorizontalScrollBarVisibility="Disabled" 
+            VerticalScrollBarVisibility="Visible">
+            <ItemsControl
+                ItemsSource="{Binding Vaults}"
+                Grid.IsSharedSizeScope="True"
+                Margin="4 8">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            x:Name="Border"
+                            Padding="4"
+                            Margin="8 0"
+                            BorderBrush="Transparent"
+                            BorderThickness="0 0 0 0"
+                            CornerRadius="4">
+                            <Border.InputBindings>
+                                <MouseBinding 
+                                    MouseAction="LeftClick"
+                                    Command="{Binding Path=DataContext.SelectVaultCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                    CommandParameter="{Binding}"/>
+                                <MouseBinding 
+                                    MouseAction="LeftDoubleClick"
+                                    Command="{Binding Path=DataContext.DoubleClickVaultCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                    CommandParameter="{Binding}"/>
+                            </Border.InputBindings>
+                            <Grid 
+                                Background="Transparent"
+                                Margin="4" 
+                                Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition 
+                                        Width="13*" />
+                                    <ColumnDefinition 
+                                        Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition 
+                                        Height="2*" />
+                                    <RowDefinition 
+                                        Height="2*" />
+                                </Grid.RowDefinitions>
+                                <WrapPanel>
+                                    <TextBlock 
+                                        FontWeight="Bold" 
+                                        Text="{Binding Name}" />
+                                    <TextBlock 
+                                        Text=" (offline)" 
+                                        Foreground="{StaticResource SecondaryAccentBrush}" 
+                                        Visibility="{Binding IsOnline, Converter={x:Static converters:BooleanVisibilityConverter.Instance}, ConverterParameter=reverse}" />
+                                    <TextBlock 
+                                        Text=" (current)" 
+                                        Foreground="{StaticResource PrimaryHueMidBrush}" 
+                                        Visibility="{Binding IsCurrentVault, Converter={x:Static converters:BooleanVisibilityConverter.Instance}}" />
+                                </WrapPanel>
+                                <TextBlock 
+                                    Grid.Row="1" 
+                                    Text="{Binding Guid}" />
+                            </Grid>
+                        </Border>
+                        <DataTemplate.Triggers>
+                            <DataTrigger
+                                Binding="{Binding IsSelected}"
+                                Value="True">
+                                <Setter
+                                    TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource MaterialDesignSelection}" />
+                                <Setter
+                                    TargetName="Border"
+                                    Property="BorderBrush"
+                                    Value="{StaticResource PrimaryHueMidBrush}" />
+                            </DataTrigger>
+                            <Trigger
+                                Property="IsMouseOver"
+                                Value="True">
+                                <Setter
+                                    TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource MaterialDesignSelection}" />
+                                <Setter
+                                    TargetName="Border"
+                                    Property="BorderBrush"
+                                    Value="{StaticResource PrimaryHueMidBrush}" />
+                            </Trigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        
+        <!-- login to vault command -->
+        <Button 
+            Grid.Row="2"
+            Visibility="{Binding IsLoadingVaults, Converter={x:Static converters:BooleanVisibilityConverter.Instance}, ConverterParameter=reverse}"
+            Margin="24 8 24 8"
+            Style="{StaticResource MaterialDesignOutlinedButton}" 
+            DockPanel.Dock="Bottom"
+            IsEnabled="{Binding IsSelectionEnabled}"
+            Command="{Binding FinishSelectionCommand}">
+            LOGIN TO VAULT
+        </Button>
+    </Grid>
+</UserControl>

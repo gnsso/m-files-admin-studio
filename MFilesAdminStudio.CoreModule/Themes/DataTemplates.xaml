@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- loading stack with only text -->
+    <!-- usage: <ContentControl ContentTemplate="{StaticResource loadingStack}" Content="{Binding Message} or loading..." /> -->
+    <DataTemplate x:Key="loadingStackTemplate">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ProgressBar
+                        Style="{StaticResource MaterialDesignCircularProgressBar}"
+                        Value="0"
+                        IsIndeterminate="True"/>
+            <TextBlock Margin="8 4 4 4" Text="{Binding}" />
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- loading stack with vm -->
+    <!-- usage: <ContentControl ContentTemplate="{StaticResource loadingStackCancellable}" Content="{Binding { Message }}" /> -->
+    <DataTemplate x:Key="loadingStackCancellableTemplate">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <ProgressBar
+                        Style="{StaticResource MaterialDesignCircularProgressBar}"
+                        Value="0"
+                        IsIndeterminate="True"/>
+                <TextBlock Margin="8 4 4 4" Text="{Binding Message}" />
+            </StackPanel>
+            <Button Style="{StaticResource MaterialDesignOutlinedButton}" Foreground="{StaticResource CloseRed}" BorderBrush="{StaticResource CloseRed}" Content="İPTAL ET" Margin="4 16 4 4" Command="{Binding CancelCommand}" />
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>

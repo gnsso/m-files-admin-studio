@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AB09F9A6-8701-46C6-A67B-5FE1713374C2}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MFilesAdminStudio.CoreModule</RootNamespace>
+    <AssemblyName>MFilesAdminStudio.CoreModule</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppSession.cs" />
+    <Compile Include="Controls\ErrorStack.xaml.cs">
+      <DependentUpon>ErrorStack.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LoadingStack.xaml.cs">
+      <DependentUpon>LoadingStack.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\CollectionNullOrEmptyVisibilityConverter.cs" />
+    <Compile Include="Converters\BooleanVisibilityConverter.cs" />
+    <Compile Include="Converters\EnumDescriptionConverter.cs" />
+    <Compile Include="CoreModuleDef.cs" />
+    <Compile Include="Events\AppTitleChangedEvent.cs" />
+    <Compile Include="Events\ConnectedVaultChangedEvent.cs" />
+    <Compile Include="Events\EventOperator.cs" />
+    <Compile Include="Events\GoBackRequestedEvent.cs" />
+    <Compile Include="Events\GoForwardRequestedEvent.cs" />
+    <Compile Include="Events\MainModuleStartedEvent.cs" />
+    <Compile Include="Events\NavigationCardClickedEvent.cs" />
+    <Compile Include="Events\NavigationJournalChangedEvent.cs" />
+    <Compile Include="Extensions\FocusExtensions.cs" />
+    <Compile Include="Extensions\RegionManagerExtensions.cs" />
+    <Compile Include="Extensions\ScrollExtensions.cs" />
+    <Compile Include="Helpers\CollectionViewProvider.cs" />
+    <Compile Include="Helpers\ControlHelper.cs" />
+    <Compile Include="Helpers\PropertyValueSwitcher.cs" />
+    <Compile Include="Helpers\SimpleMessageDialog.cs" />
+    <Compile Include="Helpers\SingleListItemSelector.cs" />
+    <Compile Include="Helpers\ViewRequestToken.cs" />
+    <Compile Include="Models\MainModuleNavParams.cs" />
+    <Compile Include="Models\ModuleNavigationItem.cs" />
+    <Compile Include="Models\NavTransitionPayload.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Helpers\StaticFunctions.cs" />
+    <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\InteractiveViewModel.cs" />
+    <Compile Include="ViewModels\ISelectableViewModel.cs" />
+    <Compile Include="ViewModels\ListVaultsItemViewModel.cs" />
+    <Compile Include="ViewModels\ListVaultsViewModel.cs" />
+    <Compile Include="ViewModels\ModuleViewModelBase.cs" />
+    <Compile Include="ViewModels\NavTransitionViewModel.cs" />
+    <Compile Include="ViewModels\SimpleConfirmMessageViewModel.cs" />
+    <Compile Include="ViewModels\LoadingStackCancellableViewModel.cs" />
+    <Compile Include="ViewModels\SimpleInfoMessageViewModel.cs" />
+    <Compile Include="Views\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListVaultsView.xaml.cs">
+      <DependentUpon>ListVaultsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NavTransitionView.xaml.cs">
+      <DependentUpon>NavTransitionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SimpleConfirmMessageView.xaml.cs">
+      <DependentUpon>SimpleConfirmMessageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SimpleInfoMessageView.xaml.cs">
+      <DependentUpon>SimpleInfoMessageView.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="LiteDB">
+      <Version>4.1.4</Version>
+    </PackageReference>
+    <PackageReference Include="MaterialDesignColors">
+      <Version>2.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="MaterialDesignExtensions">
+      <Version>3.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="MaterialDesignThemes">
+      <Version>4.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Prism.Unity">
+      <Version>8.1.97</Version>
+    </PackageReference>
+    <PackageReference Include="Prism.Wpf" Version="8.1.97" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\ErrorStack.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\LoadingStack.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DataTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Images.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SlimScrollBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ListVaultsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NavTransitionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SimpleConfirmMessageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SimpleInfoMessageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MFilesAdminStudio.Proxies\MFilesAdminStudio.Proxies.csproj">
+      <Project>{3cd6280f-62a5-40ca-9ce0-f291e5716b0f}</Project>
+      <Name>MFilesAdminStudio.Proxies</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MFilesAdminStudio.Services\MFilesAdminStudio.Services.csproj">
+      <Project>{030cdecd-90d8-4f79-8992-dabda6997dd6}</Project>
+      <Name>MFilesAdminStudio.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

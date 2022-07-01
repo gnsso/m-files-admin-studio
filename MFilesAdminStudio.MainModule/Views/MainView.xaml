@@ -1,0 +1,93 @@
+﻿<UserControl 
+    x:Class="MFilesAdminStudio.MainModule.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://prismlibrary.com/" 
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+    xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    xmlns:cp="clr-namespace:MFilesAdminStudio.CoreModule.Properties;assembly=MFilesAdminStudio.CoreModule"
+    xmlns:converters="clr-namespace:MFilesAdminStudio.CoreModule.Converters;assembly=MFilesAdminStudio.CoreModule">
+    <!-- main root dialog host -->
+    <materialDesign:DialogHost 
+        CloseOnClickAway="True"
+        Identifier="{x:Static cp:Resources.Main_RootDialogIdentifier}">
+        
+        <!-- main drawer host -->
+        <materialDesign:DrawerHost
+            IsLeftDrawerOpen="{Binding ElementName=LeftMenuToggleButton, Path=IsChecked}">
+            
+            <!-- left drawer -->
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel 
+                    MinWidth="300">
+                    <ToggleButton
+                        Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                        DockPanel.Dock="Top"
+                        HorizontalAlignment="Right" 
+                        Margin="16"
+                        IsChecked="{Binding ElementName=LeftMenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
+
+                    <mde:SideNavigation Items="{Binding NavItems}" NavigationItemSelectedCommand="{Binding NavItemSelectedCommand}" />
+                </DockPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+            
+            <!-- main page -->
+            <DockPanel>
+                <!-- main app bar wrapper -->
+                <materialDesign:ColorZone 
+                    Visibility="{Binding IsAppBarVisible, Converter={x:Static converters:BooleanVisibilityConverter.Instance}}"
+                    Padding="12 12 12 8" 
+                    materialDesign:ShadowAssist.ShadowDepth="Depth4"
+                    Mode="PrimaryMid" 
+                    DockPanel.Dock="Top">
+                    <!-- main app bar -->
+                    <DockPanel>
+                        <!-- hamburger toggle button -->
+                        <ToggleButton 
+                            Visibility="{Binding IsNavBarButtonVisible, Converter={x:Static converters:BooleanVisibilityConverter.Instance}}"
+                            x:Name="LeftMenuToggleButton"
+                            Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                            IsChecked="{Binding IsNavbarChecked, Mode=TwoWay}" />
+                        <!-- app bar titles -->
+                        <WrapPanel HorizontalAlignment="Center" Margin="-16 0 0 0">
+                            <!-- <Image Source="{StaticResource}" Margin="-12 0 12 0" Height="48" Width="48" /> -->
+                            <StackPanel HorizontalAlignment="Center" Margin="12 0 0 0">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Text="{Binding AppBarTitle}">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding AppBarTitle}" Value="{x:Null}">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding AppBarSubTitle}">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="FontSize" Value="22" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding AppBarTitle}" Value="{x:Null}">
+                                                    <Setter Property="FontSize" Value="24" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
+                        </WrapPanel>
+                    </DockPanel>
+                </materialDesign:ColorZone>
+                
+                <!-- main app page -->
+                <Grid>
+                    <ContentControl 
+                        prism:RegionManager.RegionName="{x:Static cp:Resources.Main_RegionHolderName}" />
+                </Grid>
+            </DockPanel>
+        </materialDesign:DrawerHost>
+    </materialDesign:DialogHost>
+</UserControl>
